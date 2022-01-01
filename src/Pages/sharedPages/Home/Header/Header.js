@@ -25,11 +25,11 @@ const navigate = [
   },
   {
     name: 'About us',
-    path: '/about us',
+    path: '/aboutus',
   },
   {
     name: 'Contact us',
-    path: '/contact us',
+    path: '/contactus',
   },
 ];
 

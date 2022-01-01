@@ -11,6 +11,9 @@ const ProflieMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
+  // find the user role from database
+  const isAdmin = false;
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,7 +47,11 @@ const ProflieMenu = () => {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Navigation name="Dashboard" path="/dashboard" />
+          {isAdmin ? (
+            <Navigation name="dashboard" path="/adminDashboard" />
+          ) : (
+            <Navigation name="dashboard" path="/userdashboard"></Navigation>
+          )}
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Button variant="outlined" onClick={handleLogOut}>
