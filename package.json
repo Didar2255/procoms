@@ -16,9 +16,12 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+<<<<<<< HEAD
     "react-slick": "^0.28.1",
     "react-swipeable-views": "^0.14.0",
     "slick-carousel": "^1.8.1",
+=======
+>>>>>>> 5585e3553b3c1cc5d999325feb090db3b62be058
     "web-vitals": "^2.1.2"
   },
   "scripts": {
