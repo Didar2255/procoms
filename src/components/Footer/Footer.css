@@ -1,15 +1,10 @@
 .footer-section{
-    background-color: rgb(12,12,12);
+    background-color: #212F3D ;
     color: #fff;
     padding: 30px;
 }
-.footer-content .icon{
-    font-size: 30px;
-    margin-right: 10px;
-}
-.footer-content{
-    text-align: justify;
-}
+
+
 .footer-content ul li{
     list-style: none;
     text-align: justify;
@@ -22,7 +17,7 @@
     cursor: pointer;
 }
 .footer-copy{
-    background-color:rgb(36, 35, 35) ;
+    background-color:#5D6D7E   ;
     height: 40px;
     color: white;
     padding: 10px;
