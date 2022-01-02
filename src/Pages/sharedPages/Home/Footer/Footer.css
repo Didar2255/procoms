@@ -1,0 +1,29 @@
+.footer-section{
+    background-color: #212F3D ;
+    color: #fff;
+    padding: 30px;
+}
+
+
+.footer-content ul li{
+    list-style: none;
+    text-align: justify;
+    line-height: 30px;
+    transition: all 0.5s ease-in-out;
+}
+.footer-content ul li:hover{
+    margin-left: 8px;
+    color: tomato;
+    cursor: pointer;
+}
+.footer-copy{
+    background-color:#5D6D7E   ;
+    height: 40px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+hr{
+    margin-bottom: 30px;    
+}
