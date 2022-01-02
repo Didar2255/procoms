@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsCart4 } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../../assets/logo.png';
 import Navigation from '../../../../components/Navigation';
@@ -37,8 +38,10 @@ const navigate = [
 ];
 
 const Header = () => {
+  const user = useSelector((state) => state.auth.user);
   const [showNavBar, setShowNavBar] = useState(true);
   const [show, setShow] = useState(false);
+
   let navigateTo = useNavigate();
   const showNavIcon = useMediaQuery('(max-width:750px)');
 
@@ -122,7 +125,7 @@ const Header = () => {
         </IconButton>
 
         {/* toggle based on login state */}
-        {false ? (
+        {user?.email ? (
           <ProflieMenu />
         ) : (
           <Button

@@ -1,11 +1,11 @@
 import { CircularProgress } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
 
 const AdminRoute = ({ children }) => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading } = useSelector((state) => state.auth);
   const location = useLocation();
 
   // admin will be false
