@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { ImCross } from 'react-icons/im';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../../../assets/logo.png';
 import Navigation from '../../../../components/Navigation';
 import ProflieMenu from './ProfileMenu/ProfileMenu';
 
@@ -90,7 +91,7 @@ const Header = () => {
 
         {/* logo */}
         <Link to="/">
-          <img src={'logo'} width={155} height={45} alt="logo" />
+          <img src={logo} width={155} height={45} alt="logo" />
         </Link>
 
         {/* anchors */}
