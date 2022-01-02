@@ -62,7 +62,12 @@ const Banner = () => {
                   px: 3,
                 }}
               >
-                <Grid item xs={12} md={6} sx={{ mt: { xs: 3, md: 0 } }}>
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  sx={{ mt: { xs: 3, md: 0 }, pl: { xs: 1, md: 3 } }}
+                >
                   <Typography variant="subtitle">{step.subtitle}</Typography>
                   <Typography variant="h3">{step.title}</Typography>
                   <Typography variant="body1" sx={{ mb: 3 }}>
