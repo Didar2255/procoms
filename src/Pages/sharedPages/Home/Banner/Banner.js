@@ -59,7 +59,6 @@ const Banner = () => {
                 sx={{
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  backgroundColor: '#e7e7e7',
                   px: 3,
                 }}
               >
