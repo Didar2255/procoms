@@ -12,7 +12,7 @@ const ProflieMenu = () => {
   const navigate = useNavigate();
 
   // find the user role from database
-  const isAdmin = false;
+  const isAdmin = true;
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
