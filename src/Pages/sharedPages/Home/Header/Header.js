@@ -43,7 +43,6 @@ const Header = () => {
   const showNavIcon = useMediaQuery('(max-width:750px)');
 
   // get the user info (later)
-
   const handleClick = () => {
     setShow(!show);
   };
