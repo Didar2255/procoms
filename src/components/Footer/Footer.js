@@ -1,5 +1,9 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { FaShieldVirus, FaPhoneVolume } from 'react-icons/fa'
+import { BiMap } from 'react-icons/bi'
+import { BsPhoneVibrateFill, BsFillEnvelopeFill, BsFacebook, BsInstagram, BsLinkedin, BsTwitter, BsWhatsapp } from 'react-icons/bs'
 import './Footer.css'
 
 const Footer = () => {
@@ -10,20 +14,20 @@ const Footer = () => {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ marginBottom: 3 }} >
                         <Grid item xs={12} sm={6} md={4} >
                             <Box >
-                                <Typography variant='h5'> <i className="fas fa-shipping-fast"></i> Free Shipping</Typography>
+                                <Typography variant='h5'> <AiOutlineShoppingCart /> Free Shipping</Typography>
                                 <Typography variant='h6'>All Product Shipping From Indonesia</Typography>
                             </Box>
                         </Grid>
 
                         <Grid item xs={12} sm={6} md={4} >
                             <Box >
-                                <Typography variant='h5'> <i className="fas fa-shield-virus"></i> One Year Service</Typography>
+                                <Typography variant='h5'> <FaShieldVirus /> One Year Service</Typography>
                                 <Typography variant='h6'>Service Guarantee After bye Any Product</Typography>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
                             <Box>
-                                <Typography variant='h5'> <i className="fas fa-phone-alt"></i> Online Support</Typography>
+                                <Typography variant='h5'> <FaPhoneVolume /> Online Support</Typography>
                                 <Typography variant='h6'>24 Online Support from Our Showroom</Typography>
                             </Box>
                         </Grid>
@@ -31,11 +35,29 @@ const Footer = () => {
                     <hr />
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         <Grid item xs={12} sm={6} md={3}>
-                            <Box className="footer-content">
-                                <Typography variant='h5' className='ms-4 my-3'>Contact Us</Typography>
-                                <Typography variant='body2'> <i className="fas fa-map-marker-alt icon"></i> Address : Banani,Model Town,Dhaka</Typography>
-                                <Typography variant='body2'> <i className="fas fa-phone-alt icon"></i> Phone : +0881236459</Typography>
-                                <Typography variant='body2'> <i className="far fa-envelope-open icon"></i> email: diderbokth2255@gmail.com</Typography>
+                            <Box >
+                                <Typography variant='h5' sx={{ lineHeight: 2 }}>Contact Us</Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                                    <Box sx={{ fontSize: 30 }}>
+                                        <BiMap />
+                                    </Box>
+                                    <Typography variant='body2' sx={{ lineHeight: 2 }}>
+                                        Address : Banani,Model Town,Dhaka
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                                    <Box sx={{ fontSize: 26 }}>
+                                        <BsPhoneVibrateFill />
+                                    </Box>
+                                    <Typography variant='body2' sx={{ lineHeight: 2 }}> Phone : +0881236459 / +088845445
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                                    <Box sx={{ fontSize: 26 }}>
+                                        <BsFillEnvelopeFill />
+                                    </Box>
+                                    <Typography variant='body2' sx={{ lineHeight: 2 }}> email: diderbokth2255@gmail.com</Typography>
+                                </Box>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
@@ -68,12 +90,22 @@ const Footer = () => {
                                     In order to continue to be a company society wants to exist,
                                     Perfume Store aims to become the  “power” that supports.
                                 </Typography>
-                                <Box className="social-media">
-                                    <i className="fab fa-facebook-square"></i>
-                                    <i className="fab fa-instagram-square"></i>
-                                    <i className="fab fa-linkedin"></i>
-                                    <i className="fab fa-twitter-square"></i>
-                                    <i className="fab fa-whatsapp-square"></i>
+                                <Box sx={{ m: 4, fontSize: 26, display: 'flex' }}>
+                                    <Box sx={{ mr: 2 }}>
+                                        <BsFacebook />
+                                    </Box>
+                                    <Box sx={{ mr: 2 }}>
+                                        <BsInstagram />
+                                    </Box>
+                                    <Box sx={{ mr: 2 }}>
+                                        <BsLinkedin />
+                                    </Box >
+                                    <Box sx={{ mr: 2 }}>
+                                        <BsTwitter />
+                                    </Box>
+                                    <Box sx={{ mr: 2 }}>
+                                        <BsWhatsapp />
+                                    </Box>
                                 </Box>
                             </Box>
                         </Grid>
