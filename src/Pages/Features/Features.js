@@ -8,6 +8,11 @@ const Features = () => {
     return (
         <Box sx={{ m: 3 }}>
             <Box sx={{ flexGrow: 1 }}>
+                <Box >
+                    <Typography variant='h5' sx={{ fontWeight: 600, mb: 3 }}>
+                        New Features 2022
+                    </Typography>
+                </Box>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     <Grid item xs={12} sm={6} md={4} >
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#ABEBC6', p: 3, lineHeight: 3, borderRadius: 1 }}>
@@ -16,7 +21,7 @@ const Features = () => {
                                     Up to 30% Off
                                 </Typography>
                                 <Typography variant='h6'>
-                                    New Arrival 2021 (drone)
+                                    New Arrival 2022 (drone)
                                 </Typography>
                                 <Button variant="contained">Shop Now</Button>
                             </Box>
@@ -32,7 +37,7 @@ const Features = () => {
                                     Up to 30% Off
                                 </Typography>
                                 <Typography variant='h6'>
-                                    New Arrival 2021 (laptop)
+                                    New Arrival 2022 (laptop)
                                 </Typography>
                                 <Button variant="contained">Shop Now</Button>
                             </Box>
@@ -48,7 +53,7 @@ const Features = () => {
                                     Up to 30% Off
                                 </Typography>
                                 <Typography variant='h6'>
-                                    New Arrival 2021 (camera)
+                                    New Arrival 2022 (camera)
                                 </Typography>
                                 <Button variant="contained">Shop Now</Button>
                             </Box>
@@ -60,7 +65,7 @@ const Features = () => {
 
                 </Grid>
             </Box>
-        </Box>
+        </Box >
     );
 };
 

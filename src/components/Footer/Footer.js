@@ -11,14 +11,14 @@ const Footer = () => {
                         <Grid item xs={12} sm={6} md={4} >
                             <Box >
                                 <Typography variant='h5'> <i className="fas fa-shipping-fast"></i> Free Shipping</Typography>
-                                <Typography variant='h6'>Perfume Shipping From Indonesia</Typography>
+                                <Typography variant='h6'>All Product Shipping From Indonesia</Typography>
                             </Box>
                         </Grid>
 
                         <Grid item xs={12} sm={6} md={4} >
                             <Box >
                                 <Typography variant='h5'> <i className="fas fa-shield-virus"></i> One Year Service</Typography>
-                                <Typography variant='h6'>Service Guarantee After bye Motor bike</Typography>
+                                <Typography variant='h6'>Service Guarantee After bye Any Product</Typography>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
@@ -81,7 +81,7 @@ const Footer = () => {
                 </Box>
             </Box >
             <Box className="footer-copy">
-                <Typography variant='body2'>&copy; 2021 made by Didar </Typography>
+                <Typography variant='body2'>&copy; 2021 made by Procoms.com</Typography>
             </Box>
         </Box >
     );
