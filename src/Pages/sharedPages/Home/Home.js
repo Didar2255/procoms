@@ -10,6 +10,7 @@ const Home = () => {
     <Box>
       <Banner></Banner>
       <Features></Features>
+      <Product />
       <Reviews />
     </Box>
   );
