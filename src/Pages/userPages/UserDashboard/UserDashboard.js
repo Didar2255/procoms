@@ -9,7 +9,7 @@ const links = [
     path: '/user/pay',
   },
   {
-    name: 'MyOrders',
+    name: 'My Orders',
     path: '/user/myOrders',
   },
   {
