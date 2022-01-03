@@ -14,9 +14,9 @@ const AboutUs = () => {
           </Typography>
         </Box>
         <Box sx={{ textAlign: 'center', p: 3 }}>
-          <Typography>WELCOME TO PROCOMS DIRECT, THE BANGLADESH PREMIER ONLINE GADGET AND GEAR FOR LAPTOP, DESKTOP, CAMERA, DRONE CAMERA,CCTV, LAPTOP, MOBILE ACCESSORIES.</Typography>
+          <Typography variant='body2'>WELCOME TO PROCOMS DIRECT, THE BANGLADESH PREMIER ONLINE GADGET AND GEAR FOR LAPTOP,<br /> DESKTOP, CAMERA, DRONE CAMERA,CCTV, LAPTOP, MOBILE ACCESSORIES.</Typography>
         </Box>
-        <Box sx={{ flexGrow: 1, my: 7, backgroundColor: '#EBF5FB ', p: 4 }}>
+        <Box sx={{ flexGrow: 1, my: 7, backgroundColor: '#EBF5FB ', p: 4, borderRadius: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6}>
               <Box>
@@ -39,22 +39,22 @@ const AboutUs = () => {
             <Grid item xs={12} sm={12} md={6}>
               <Box>
                 <img src={mission} alt="" />
-                <Typography>Our Mission</Typography>
-                <Typography>TO SUPPLY THE BIGGEST FRAGRANCE & COSMETICS BRANDS AT AFFORDABLE PRICES.</Typography>
+                <Typography variant='h6'>Our Mission</Typography>
+                <Typography variant='body2'>TO SUPPLY THE BIGGEST FRAGRANCE & COSMETICS BRANDS AT AFFORDABLE PRICES.</Typography>
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Box >
                 <img src={vision} alt="" />
-                <Typography>Our Vision</Typography>
-                <Typography>TO PROVIDE AN EXCEPTIONAL SHOPPING EXPERIENCE WITH AN EASY TO USE WEBSITE, FAST SHIPPING & OUTSTANDING CUSTOMER SERVICE.</Typography>
+                <Typography variant='h6'>Our Vision</Typography>
+                <Typography variant='body2'>TO PROVIDE AN EXCEPTIONAL SHOPPING EXPERIENCE WITH AN EASY TO USE WEBSITE, FAST SHIPPING & OUTSTANDING CUSTOMER SERVICE.</Typography>
               </Box>
             </Grid>
           </Grid>
         </Box>
-        <Box sx={{ textAlign: 'center', mt: 5, p: 5, lineHeight: 3, backgroundColor: '#EBF5FB' }}>
-          <Typography>New In !</Typography>
-          <Typography>Our latest collection is a combination of our designer's vision and our technical expert's invention. <br /> Take Dobrada for example, an eye-catching. Lightweight hybrid with boat shoe detailing </Typography>
+        <Box sx={{ textAlign: 'center', mt: 5, p: 5, lineHeight: 3, backgroundColor: '#EBF5FB', borderRadius: 1 }}>
+          <Typography variant='h6'>New In !</Typography>
+          <Typography variant='body2'>Our latest collection is a combination of our designer's vision and our technical expert's invention. <br /> Take Dobrada for example, an eye-catching. Lightweight hybrid with boat shoe detailing </Typography>
           <Link to=''>
             <Button variant='contained' sx={{ color: 'white' }}>Shop Now</Button>
           </Link>
