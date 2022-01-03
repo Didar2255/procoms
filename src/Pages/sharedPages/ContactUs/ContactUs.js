@@ -128,7 +128,7 @@ const ContactUs = () => {
                     <TextField type="text" placeholder='Write a Subject *' name='subject' style={{ width: '100%', backgroundColor: '#fff' }} />
                   </Box>
                   <Box sx={{ m: 2 }}>
-                    <TextareaAutosize name="message" id="message" placeholder='Write your massage' name='message' minRows={5} style={{ width: '100%' }}></TextareaAutosize>
+                    <TextareaAutosize name="message" id="message" placeholder='Write your massage' minRows={5} style={{ width: '100%' }}></TextareaAutosize>
                   </Box>
                   <Box sx={{ m: 2 }}>
                     <Button variant='contained' type='submit' sx={{ width: '100%' }}>Submit</Button>
