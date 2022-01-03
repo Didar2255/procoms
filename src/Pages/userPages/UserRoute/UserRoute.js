@@ -9,7 +9,7 @@ const UserRoute = ({ children }) => {
   const location = useLocation();
 
   // admin will be false
-  const admin = false; // user.isAdmin
+  const admin = useSelector((state) => state.auth.admin);
 
   if (isLoading) {
     return (

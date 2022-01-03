@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   // admin will be false
-  const admin = true; // user.isAdmin (later come from database)
+  const admin = useSelector((state) => state.auth.admin);
 
   if (isLoading) {
     return (
@@ -18,6 +18,7 @@ const AdminRoute = ({ children }) => {
       </Box>
     );
   }
+
   return user.email && (admin || !isLoading) ? (
     children
   ) : (

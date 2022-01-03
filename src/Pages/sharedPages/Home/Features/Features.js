@@ -8,13 +8,13 @@ const Features = () => {
   const features = [
     {
       discount: 'Up to 30% Off',
-      name: 'New Arrival 2022 (laptop)',
+      name: 'New Arrival 2022 (drone)',
       image: drone,
       bgColor: '#ABEBC6',
     },
     {
       discount: 'Up to 30% Off',
-      name: 'New Arrival 2022 (drone)',
+      name: 'New Arrival 2022 (laptop)',
       image: laptop,
       bgColor: '#C39BD3',
     },
@@ -25,6 +25,7 @@ const Features = () => {
       bgColor: '#7FB3D5',
     },
   ];
+
   return (
     <Box sx={{ m: 3 }}>
       <Box sx={{ flexGrow: 1 }}>

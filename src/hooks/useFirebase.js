@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -7,10 +8,11 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import initializeAuthentication from '../Firebase/Firebase.init';
 import {
   registerUser,
+  setAdmin,
   setAuthError,
   setIsLoading,
 } from '../redux/slices/auth/authSlice';
@@ -22,6 +24,8 @@ const useFirebase = () => {
   const dispatch = useDispatch();
 
   const auth = getAuth();
+
+  const email = useSelector((state) => state.auth.user.email);
 
   //REGISTRATION PROCESS OF USER
   const processSignUp = (name, email, password, navigate) => {
@@ -35,13 +39,10 @@ const useFirebase = () => {
         dispatch(registerUser(newUser));
 
         // save the user to database
-        // axios
-        //   .post("url will be here", {
-        //     ...newUser,
-        //     isPaidUser: false,
-        //   })
-        //   .then(() => {})
-        //   .catch((error) => console.log(error.message));
+        axios
+          .put('http://localhost:5000/user', { email })
+          .then(() => {})
+          .catch((error) => console.log(error.message));
 
         // send name to firebase after creation
         updateProfile(auth.currentUser, {
@@ -85,6 +86,13 @@ const useFirebase = () => {
     });
     return () => unsubscribed;
   }, [auth, dispatch]);
+
+  // set the admin
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/user?email=${email}`)
+      .then((response) => dispatch(setAdmin(response.data.admin)));
+  }, [email, dispatch]);
 
   //process user logout
   const logout = () => {
