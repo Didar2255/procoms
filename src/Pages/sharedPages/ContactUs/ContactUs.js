@@ -58,8 +58,8 @@ const ContactUs = () => {
     ]
   };
   return (
-    <Box sx={{ flexGrow: 1, my: 5 }}>
-      <Box sx={{ textAlign: 'center', backgroundColor: '#EBF5FB', p: 10 }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ textAlign: 'center', backgroundColor: '#EBF5FB', p: 8 }}>
         <Typography variant='h5' sx={{ fontWeight: 600, lineHeight: 2 }}>
           CONTACT
         </Typography>
@@ -70,7 +70,7 @@ const ContactUs = () => {
           / Contact Us
         </Typography>
       </Box>
-      <Box sx={{ my: 3 }}>
+      <Container>
         <Slider {...settings}>
           <Box>
             <img src={logo1} alt="" />
@@ -88,7 +88,7 @@ const ContactUs = () => {
             <img src={logo5} alt="" />
           </Box>
         </Slider>
-      </Box>
+      </Container>
       <Box sx={{ textAlign: 'center', my: 2 }}>
         <Typography variant='body1'>
           Got a question? We had love to hear from you. <br /> Send us a message and we will respond as soon as possible.
