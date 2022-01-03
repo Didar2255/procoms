@@ -6,10 +6,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../../../../../assets/avatar.png';
 import Navigation from '../../../../../components/Navigation';
+import useFirebase from '../../../../../hooks/useFirebase';
 
 const ProflieMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const { logout } = useFirebase();
 
   // find the user role from database
   const isAdmin = true;
@@ -24,7 +26,7 @@ const ProflieMenu = () => {
   };
 
   const handleLogOut = () => {
-    // will logout from here
+    logout();
     navigate('/');
   };
 
