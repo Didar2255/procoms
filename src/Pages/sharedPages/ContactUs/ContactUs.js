@@ -90,7 +90,7 @@ const ContactUs = () => {
         </Slider>
       </Container>
       <Box sx={{ textAlign: 'center', my: 2 }}>
-        <Typography variant='body1'>
+        <Typography variant='body1' sx={{ fontWeight: 600 }}>
           Got a question? We had love to hear from you. <br /> Send us a message and we will respond as soon as possible.
         </Typography>
       </Box>
