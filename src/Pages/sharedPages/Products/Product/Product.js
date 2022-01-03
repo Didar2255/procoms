@@ -1,34 +1,35 @@
-import { Box, Container } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Box, Container, Modal, Rating } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { AiFillEye, AiOutlineShoppingCart } from 'react-icons/ai';
-import computer from '../../../../assets/Images/About/about.jpg';
 import './Product.css';
+import SingleProductDetail from './SingleProductDetail/SingleProductDetail';
 
-const Product = () => {
+const Product = ({ product }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <Container>
-      <Card sx={{ maxWidth: 345, my: 5 }}>
-        <Box class="box">
+      <Card sx={{ maxWidth: 345, my: { xs: 5, lg: 0 } }}>
+        <Box className="box">
           <CardMedia
             component="img"
             height="200px"
-            image={computer}
-            alt="green iguana"
-            style={{ width: '350px' }}
+            image={product.image}
+            alt={product.name}
+            sx={{ maxWidth: 290, mx: 'auto' }}
           />
           <Box className="box-content">
             <Box className="content">
               <ul className="details-icon">
-                <li title="Quick View">
+                <li title="Quick View" onClick={handleOpen}>
                   <AiFillEye className="icon" />
                 </li>
-                <li title="Add to cart">
+                <li title="Add to cart" onClick={handleOpen}>
                   <AiOutlineShoppingCart className="icon" />
                 </li>
               </ul>
@@ -37,18 +38,32 @@ const Product = () => {
         </Box>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {product.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ maxWidth: 280 }}
+          >
+            {product.short_desc}
           </Typography>
+          <Rating
+            sx={{ my: 2 }}
+            name="read-only"
+            value={product.rating}
+            readOnly
+          />
+          <Typography>${product.price}</Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </Card>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <SingleProductDetail product={product} handleClose={handleClose} />
+      </Modal>
     </Container>
   );
 };
