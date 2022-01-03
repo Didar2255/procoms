@@ -22,6 +22,7 @@ import MyOrders from './Pages/userPages/MyOrders/MyOrders';
 import Pay from './Pages/userPages/Pay/Pay';
 import UserDashboard from './Pages/userPages/UserDashboard/UserDashboard';
 import UserRoute from './Pages/userPages/UserRoute/UserRoute';
+import PurchaseProduct from './Pages/sharedPages/Products/PurchaseProduct/PurchaseProduct';
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="addReview" element={<AddReview />} />
             <Route path="myOrders" element={<MyOrders />} />
             <Route path="pay" element={<Pay />} />
+            <Route path='purchase' element={<PurchaseProduct />}></Route>
           </Route>
 
           {/* admin routes */}

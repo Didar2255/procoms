@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import computer from '../../../../assets/Images/About/about.jpg'
 import { Box, Container } from '@mui/material';
 import './Product.css'
-import { AiFillEye, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiFillEye, AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Product = () => {
     return (
