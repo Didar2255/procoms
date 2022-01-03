@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { AuthProvider } from './context/AuthProvider/AuthProvider';
 import AdminDashboard from './Pages/adminPages/AdminDashboard/AdminDashboard';
 import AboutUs from './Pages/sharedPages/AboutUs/AboutUs';

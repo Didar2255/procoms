@@ -14,7 +14,7 @@ const Features = () => {
                     </Typography>
                 </Box>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                    <Grid item xs={12} sm={6} md={4} >
+                    <Grid item xs={12} sm={12} md={4} >
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#ABEBC6', p: 3, lineHeight: 3, borderRadius: 1 }}>
                             <Box>
                                 <Typography variant='body2'>
@@ -30,7 +30,7 @@ const Features = () => {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} >
+                    <Grid item xs={12} sm={12} md={4} >
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#C39BD3 ', p: 3, lineHeight: 3, borderRadius: 1 }}>
                             <Box>
                                 <Typography variant='body2'>
@@ -46,7 +46,7 @@ const Features = () => {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} >
+                    <Grid item xs={12} sm={12} md={4} >
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#7FB3D5', p: 3, lineHeight: 3, borderRadius: 1 }}>
                             <Box>
                                 <Typography variant='body2'>
