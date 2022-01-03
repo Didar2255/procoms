@@ -1,6 +1,3 @@
-.product-img img{
-    border: 1px solid rgb(53, 53, 53);
-}
 .product-info{
     text-align: left;
     margin-left: 20px;
@@ -24,7 +21,6 @@
     background-color: #ff7004;
     color: white;
     font-weight: 500;
-    border: 1px solid rgb(65, 64, 64);
  }
  .purchase-form form .Add-cart-btn:hover{
      background-color: #2C3E50 ;  

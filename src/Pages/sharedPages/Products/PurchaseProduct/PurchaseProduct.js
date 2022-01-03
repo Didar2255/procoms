@@ -13,22 +13,18 @@ const PurchaseProduct = () => {
     return (
         <Container>
             <Box sx={{ flexGrow: 1, my: 5 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={12} md={4}>
-                        <Box className="product-img">
-                            <img src={laptop} alt="" style={{ width: '300px' }} />
+                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <Box className="product-img" sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <img src={laptop} alt="" style={{ width: '450px', paddingTop: 15 }} />
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={3}>
-                        <Box className="product-info">
+                    <Grid item xs={12} sm={12} md={6}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', }}>
                             <Typography>Product Name</Typography>
                             <Typography> Product Price</Typography>
-                            <Typography>Product Rating</Typography>
-                            <Typography>Product color</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={5}>
-                        <div className="purchase-form">
+                        <Box className="purchase-form" sx={{ mt: 2 }}>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <input {...register("productName")}
                                     defaultValue=''
@@ -64,7 +60,7 @@ const PurchaseProduct = () => {
                                     </Box>
                                 </Box>
                             </form>
-                        </div>
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
