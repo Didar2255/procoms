@@ -1,7 +1,5 @@
-import { Box, Container } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Box, Container, Rating } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -10,17 +8,16 @@ import { AiFillEye, AiOutlineShoppingCart } from 'react-icons/ai';
 import computer from '../../../../assets/Images/About/about.jpg';
 import './Product.css';
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
     <Container>
-      <Card sx={{ maxWidth: 345, my: 5 }}>
-        <Box class="box">
+      <Card sx={{ maxWidth: 345, my: { xs: 5, lg: 0 } }}>
+        <Box className="box">
           <CardMedia
             component="img"
             height="200px"
             image={computer}
-            alt="green iguana"
-            style={{ width: '350px' }}
+            alt={product.name}
           />
           <Box className="box-content">
             <Box className="content">
@@ -37,17 +34,19 @@ const Product = () => {
         </Box>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {product.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {product.short_desc}
           </Typography>
+          <Rating
+            sx={{ my: 2 }}
+            name="read-only"
+            value={product.rating}
+            readOnly
+          />
+          <Typography>${product.price}</Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </Card>
     </Container>
   );

@@ -29,11 +29,9 @@ const Features = () => {
   return (
     <Box sx={{ m: 3 }}>
       <Box sx={{ flexGrow: 1 }}>
-        <Box>
-          <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
-            New Features 2022
-          </Typography>
-        </Box>
+        <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
+          New Features 2022
+        </Typography>
         <Grid container spacing={2}>
           {features.map((feature) => (
             <Grid key={feature.name} item xs={12} sm={6} md={4}>
