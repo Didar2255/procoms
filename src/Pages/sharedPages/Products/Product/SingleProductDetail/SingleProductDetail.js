@@ -11,7 +11,8 @@ import { pink } from '@mui/material/colors';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createOrder } from '../../../../../redux/slices/order/orderSlice';
 import { fetchSingleProduct } from '../../../../../redux/slices/product/productSlice';
 
 const SingleProductDetail = () => {
@@ -24,6 +25,7 @@ const SingleProductDetail = () => {
     formState: { errors },
   } = useForm();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
@@ -32,7 +34,7 @@ const SingleProductDetail = () => {
   const onSubmit = (data) => {
     const order_time = new Date().toDateString();
     const newOrder = {
-      name: user.displayName,
+      name: user.name,
       email: user.email,
       order_time,
       product_id: id,
@@ -41,11 +43,7 @@ const SingleProductDetail = () => {
     if (admin) {
       alert("You're admin. you don't have to buy products");
     } else {
-      // axios
-      //   .post('https://guarded-sierra-90712.herokuapp.com/orders', newOrder)
-      //   .then(() => {
-      //     history.push('/user/myorders');
-      //   });
+      dispatch(createOrder(newOrder)).then(() => navigate('/user/myOrders'));
     }
   };
 
@@ -93,12 +91,12 @@ const SingleProductDetail = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 {/* name of the user */}
                 <div className="input__box">
-                  <input value={user.name} readOnly />
+                  <input value={user?.name} readOnly />
                 </div>
 
                 {/* email of the user */}
                 <div className="input__box">
-                  <input value={user.email} readOnly />
+                  <input value={user?.email} readOnly />
                 </div>
 
                 <div className="input__box">
