@@ -1,0 +1,33 @@
+.form__container {
+  width: 400px;
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.form__container .input__box {
+  position: relative;
+}
+
+.form__container .input__box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #222;
+  outline: none;
+  background: transparent;
+}
+
+.form__container .input__box textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #222;
+  outline: none;
+  background: transparent;
+}
