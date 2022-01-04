@@ -12,15 +12,22 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const addProducts = createAsyncThunk(
+  'products/addProducts',
+  async (data) => {
+    const response = await axios
+      .post('http://localhost:5000/products', data)
+      .then((response) => response.data);
+    return response;
+  }
+);
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
   },
   reducers: {
-    addToProduct: (state, { payload }) => {
-      state.products.push({ payload });
-    },
     removeFromProduct: (state, { payload }) => {
       state.products = state.products.filter(
         (product) => product._id !== payload
@@ -31,6 +38,9 @@ const productSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
       // Add cards to the state array
       state.products = payload;
+    });
+    builder.addCase(addProducts.fulfilled, (state, { payload }) => {
+      state.products.push(payload);
     });
   },
 });

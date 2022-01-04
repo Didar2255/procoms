@@ -20,7 +20,7 @@ const Products = () => {
         Top Rated Products
       </Typography>
       <Grid container sx={{ justifyContent: 'space-evenly' }}>
-        {products.slice(0, 4).map((product) => (
+        {products.map((product) => (
           <Grid item key={product._id}>
             <Product product={product}></Product>
           </Grid>

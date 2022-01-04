@@ -3,10 +3,13 @@ import { pink } from '@mui/material/colors';
 import { Box } from '@mui/system';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addProducts } from '../../../redux/slices/product/productSlice';
 import './AddProduct.css';
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setOpen(false);
@@ -16,25 +19,22 @@ const AddProduct = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // axios
-    //   .post('url', data)
-    //   .then(() => {
-    //     setOpen(true);
-    //   });
+    dispatch(addProducts(data));
+    setOpen(true);
+    reset();
   };
 
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 220px)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        mt: 3,
+        my: 3,
         flexDirection: 'column',
       }}
     >
@@ -92,16 +92,16 @@ const AddProduct = () => {
             />
           </div>
 
-          {errors.long_desc && (
+          {errors.short_desc && (
             <Alert severity="error" variant="outlined">
-              {errors.desc.message}
+              {errors.short_desc.message}
             </Alert>
           )}
 
           <div className="input__box">
             <textarea
               placeholder="long description of the product"
-              {...register('logng_desc', {
+              {...register('long_desc', {
                 required: 'this field is required',
                 minLength: {
                   value: 50,
@@ -117,7 +117,7 @@ const AddProduct = () => {
 
           {errors.long_desc && (
             <Alert severity="error" variant="outlined">
-              {errors.desc.message}
+              {errors.long_desc.message}
             </Alert>
           )}
 
@@ -148,12 +148,12 @@ const AddProduct = () => {
               {...register('price', {
                 required: 'this field is required',
                 min: {
-                  value: 1000,
-                  message: 'price should be between 1000 to 50000',
+                  value: 500,
+                  message: 'price should be between 500 to 50000',
                 },
                 max: {
                   value: 50000,
-                  message: 'rating should be between 1000 to 50000',
+                  message: 'rating should be between 500 to 50000',
                 },
               })}
             />
@@ -172,21 +172,30 @@ const AddProduct = () => {
               {...register('rating', {
                 required: 'this field is required',
                 min: {
-                  value: 0,
-                  message: 'price should be between 1000 to 50000',
+                  value: 1,
+                  message: 'price should be between 1 to 5',
                 },
                 max: {
                   value: 5,
-                  message: 'rating should be between 1000 to 50000',
+                  message: 'rating should be between 1 to 5',
                 },
               })}
             />
           </div>
           {errors.rating && (
             <Alert severity="error" variant="outlined">
-              {errors.price.message}
+              {errors.rating.message}
             </Alert>
           )}
+
+          <Typography variant="h6" sx={{ pb: 2 }}>
+            Select Product Category
+          </Typography>
+          <select {...register('category')}>
+            <option value="laptop">laptop</option>
+            <option value="camera">camera</option>
+            <option value="drone">drone</option>
+          </select>
 
           <button
             type="submit"

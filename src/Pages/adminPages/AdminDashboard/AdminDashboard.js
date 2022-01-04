@@ -9,14 +9,14 @@ import DashboardHeader from '../../../components/DashboardHeader';
 const links = [
   { name: 'Make Admin', path: '/admin/makeAdmin' },
   { name: 'Add Product', path: '/admin/addProduct' },
-  { name: 'Manage All Orders', path: '/admin/makeAdmin' },
-  { name: 'Manage All Products', path: '/admin/makeAdmin' },
+  { name: 'Manage All Orders', path: '/admin/manageAllOrders' },
+  { name: 'Manage All Products', path: '/admin/manageAllProducts' },
 ];
 
 const AdminDashboard = () => {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+
   return (
     <Box container style={{ minHeight: 'calc(100vh - 270px)' }} sx={{ mt: 3 }}>
       <DashboardHeader links={links} />
