@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { CircularProgress, Container } from '@mui/material';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
-const CheckOutFrom = () => {
-    // const { productPrice, _id } = order
+const CheckOutFrom = ({ order }) => {
     const stripe = useStripe()
     const elements = useElements();
+    const user = useSelector(state => state.auth.user)
 
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
@@ -13,15 +15,10 @@ const CheckOutFrom = () => {
     const [clientSecret, setClientSecret] = useState('')
 
     useEffect(() => {
-        fetch('https://radiant-shore-26920.herokuapp.com/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify()
+        axios.post('http://localhost:5000/create-payment-intent', {
+            price: order
         })
-            .then(res => res.json())
-            .then(data => setClientSecret(data.clientSecret))
+            .then(response => setClientSecret(response.data.clientSecret))
     }, [])
 
     const handleSubmit = async (e) => {
@@ -53,8 +50,8 @@ const CheckOutFrom = () => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: 'user?'.displayName,
-                        email: 'user?'.email
+                        name: user?.name,
+                        email: user?.email
                     },
                 },
             },
@@ -64,29 +61,10 @@ const CheckOutFrom = () => {
             setSuccess('')
         }
         else {
-            setSuccess('Your payment processedsuccessfully')
+            setSuccess('Your payment processed successfully')
             setError('')
             setProcessing(false)
-            // save to database
-            const payment = {
-                amount: paymentIntent.amount,
-                created: paymentIntent.created,
-                last: paymentIntent?.card?.last4,
-                transaction: paymentIntent.client_secret.slice('_secret')[0],
-            }
-            const url = `https://radiant-shore-26920.herokuapp.com/products/`
-            fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(payment)
-            })
-                .then(res => res.json())
-                .then(data => console.log(data))
         }
-
-
     }
     return (
         <Container className='my-5'>
@@ -108,7 +86,7 @@ const CheckOutFrom = () => {
                     }}
                 />
                 {processing ? <CircularProgress></CircularProgress> : <button type="submit" disabled={!stripe || success} >
-                    Pay ${'productPrice'}
+                    Pay ${order}
                 </button>}
             </form>
             {

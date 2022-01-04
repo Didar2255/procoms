@@ -5,6 +5,7 @@ import MobileStepper from '@mui/material/MobileStepper';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import bannerOne from '../../../../assets/Images/BannerImg/bannerOne.png';
@@ -38,6 +39,8 @@ const Banner = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = banners.length;
+
+  const navigate = useNavigate();
 
   const handleStepChange = (step) => {
     setActiveStep(step);
@@ -73,7 +76,12 @@ const Banner = () => {
                   <Typography variant="body1" sx={{ mb: 3 }}>
                     {step.desc}
                   </Typography>
-                  <Button variant="contained">Shop Now</Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => navigate('/products')}
+                  >
+                    Shop Now
+                  </Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <img

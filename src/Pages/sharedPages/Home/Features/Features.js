@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import camera from '../../../../assets/Images/Features/camara.png';
 import drone from '../../../../assets/Images/Features/drone.png';
 import laptop from '../../../../assets/Images/Features/laptop.png';
@@ -26,14 +27,14 @@ const Features = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ m: 3 }}>
       <Box sx={{ flexGrow: 1 }}>
-        <Box>
-          <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
-            New Features 2022
-          </Typography>
-        </Box>
+        <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
+          New Features 2022
+        </Typography>
         <Grid container spacing={2}>
           {features.map((feature) => (
             <Grid key={feature.name} item xs={12} sm={6} md={4}>
@@ -53,7 +54,11 @@ const Features = () => {
                     {feature.discount}
                   </Typography>
                   <Typography variant="h6">{feature.name}</Typography>
-                  <Button variant="contained" sx={{ mt: 1 }}>
+                  <Button
+                    variant="contained"
+                    sx={{ mt: 1 }}
+                    onClick={() => navigate('/products')}
+                  >
                     Shop Now
                   </Button>
                 </Box>

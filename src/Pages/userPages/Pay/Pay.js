@@ -1,7 +1,10 @@
 import React from 'react';
+import Payment from './Payment/Payment';
 
 const Pay = () => {
-  return <div>Here user will pay</div>;
+  return (
+    <Payment></Payment>
+  );
 };
 
 export default Pay;

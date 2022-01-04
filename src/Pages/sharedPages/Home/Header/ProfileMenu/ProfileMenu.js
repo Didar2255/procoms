@@ -3,6 +3,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import avatar from '../../../../../assets/avatar.png';
 import Navigation from '../../../../../components/Navigation';
@@ -14,7 +15,7 @@ const ProflieMenu = () => {
   const { logout } = useFirebase();
 
   // find the user role from database
-  const isAdmin = true;
+  const isAdmin = useSelector((state) => state.auth.admin);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -50,9 +51,9 @@ const ProflieMenu = () => {
       >
         <MenuItem onClick={handleClose}>
           {isAdmin ? (
-            <Navigation name="dashboard" path="/adminDashboard" />
+            <Navigation name="dashboard" path="/admin" />
           ) : (
-            <Navigation name="dashboard" path="/userdashboard"></Navigation>
+            <Navigation name="dashboard" path="/user"></Navigation>
           )}
         </MenuItem>
         <MenuItem onClick={handleClose}>

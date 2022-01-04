@@ -1,6 +1,5 @@
 import {
   AppBar,
-  Badge,
   Button,
   IconButton,
   Toolbar,
@@ -10,7 +9,6 @@ import { red } from '@mui/material/colors';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { BsCart4 } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -117,12 +115,6 @@ const Header = () => {
             ))}
           </Box>
         ) : null}
-        {/* cart */}
-        <IconButton sx={{ mr: 1 }}>
-          <Badge badgeContent={4} color="primary">
-            <BsCart4 />
-          </Badge>
-        </IconButton>
 
         {/* toggle based on login state */}
         {user?.email ? (
