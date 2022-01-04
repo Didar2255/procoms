@@ -1,7 +1,6 @@
 import { Alert, Snackbar, Typography } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import { Box } from '@mui/system';
-import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './AddProduct.css';
@@ -20,11 +19,12 @@ const AddProduct = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post('https://guarded-sierra-90712.herokuapp.com/bikes', data)
-      .then(() => {
-        setOpen(true);
-      });
+    console.log(data);
+    // axios
+    //   .post('url', data)
+    //   .then(() => {
+    //     setOpen(true);
+    //   });
   };
 
   return (
