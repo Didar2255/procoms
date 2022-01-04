@@ -1,28 +1,67 @@
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import { MdExpandMore } from 'react-icons/md';
 import { Container, Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import pic1 from '../../../../assets/procoms.png'
-import { MdExpandMore } from 'react-icons/md';
+
+const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+    border: `1px solid ${theme.palette.divider}`,
+    '&:not(:last-child)': {
+        borderBottom: 0,
+    },
+    '&:before': {
+        display: 'none',
+    },
+}));
+
+const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+        expandIcon={< MdExpandMore />}
+        {...props}
+    />
+))(({ theme }) => ({
+    backgroundColor:
+        theme.palette.mode === 'dark'
+            ? 'rgba(255, 255, 255, .05)'
+            : 'rgba(0, 0, 0, .03)',
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+    },
+    '& .MuiAccordionSummary-content': {
+        marginLeft: theme.spacing(1),
+    },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    padding: theme.spacing(2),
+    borderTop: '1px solid rgba(0, 0, 0, .125)',
+}));
 
 const CustomerQuestion = () => {
+    const [expanded, setExpanded] = React.useState('panel1');
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
     return (
         <Container>
             <Box sx={{ flexGrow: 1, backgroundColor: '#D1F2EB ', p: 5, borderRadius: '5px' }}>
-                <Grid container spacing={2}>
+                <Grid container spacing={6}>
                     <Grid item xs={12} sm={12} md={6}>
                         <Typography variant='h5' sx={{ fontWeight: 600, mb: 5 }}>
                             Frequently Ask Question
                         </Typography>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<MdExpandMore />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
+                        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                                 <Typography sx={{ fontWeight: 'bold' }}>1. How can I apply promo code to order offer product?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -31,12 +70,8 @@ const CustomerQuestion = () => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<MdExpandMore />}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
+                        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
                                 <Typography sx={{ fontWeight: 'bold' }}>2. What are the best selling product?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -45,12 +80,8 @@ const CustomerQuestion = () => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion >
-                            <AccordionSummary
-                                expandIcon={<MdExpandMore />}
-                                aria-controls="panel3a-content"
-                                id="panel3a-header"
-                            >
+                        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                                 <Typography sx={{ fontWeight: 'bold' }}>3. What are the return policy ?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -70,8 +101,8 @@ const CustomerQuestion = () => {
                     </Grid>
                 </Grid>
             </Box>
-        </Container>
+        </Container >
     );
-};
+}
 
 export default CustomerQuestion;
