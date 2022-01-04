@@ -1,16 +1,19 @@
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../../../redux/slices/product/productSlice';
 import Product from './Product/Product';
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.products);
+
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/products')
-      .then((response) => setProducts(response.data));
+    dispatch(fetchProducts());
   }, []);
+
   return (
     <Box sx={{ m: 3 }}>
       <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
