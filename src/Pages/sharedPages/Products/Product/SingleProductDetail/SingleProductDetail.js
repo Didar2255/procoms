@@ -1,147 +1,167 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {
+  Alert,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from '@mui/material';
+import { pink } from '@mui/material/colors';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import './SingleProductDetail.css';
+import { fetchSingleProduct } from '../../../../../redux/slices/product/productSlice';
 
 const SingleProductDetail = () => {
-  const [product, setProduct] = useState();
-  const { register, handleSubmit } = useForm();
+  const product = useSelector((state) => state.products.singleProduct);
+  const { user, admin } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/products/${id}`)
-      .then((response) => setProduct(response.data));
+    dispatch(fetchSingleProduct(id));
   }, [id]);
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    const order_time = new Date().toDateString();
+    const newOrder = {
+      name: user.displayName,
+      email: user.email,
+      order_time,
+      product_id: id,
+      ...data,
+    };
+    if (admin) {
+      alert("You're admin. you don't have to buy products");
+    } else {
+      // axios
+      //   .post('https://guarded-sierra-90712.herokuapp.com/orders', newOrder)
+      //   .then(() => {
+      //     history.push('/user/myorders');
+      //   });
+    }
+  };
+
   return (
-    <Box
-      sx={{
-        p: 3,
-      }}
-    >
-      <Box sx={{ flexGrow: 1, my: 5 }}>
-        <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-          <Grid item xs={12} sm={12} md={6}>
-            <Box
-              className="product-img"
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
-              <img
-                src={product?.image}
-                alt=""
-                style={{ width: '450px', paddingTop: 15 }}
+    <Box style={{ minHeight: 'calc(100vh - 270px)' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyCcontent: 'center',
+          alignItems: 'center',
+          my: 3,
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Card sx={{ maxWidth: '95%', mx: 'auto' }}>
+              <CardContent
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ color: 'info.main' }}
+                >
+                  {product.name}
+                </Typography>
+                <Typography variant="h5" sx={{ color: 'error.main' }}>
+                  ${product.price}
+                </Typography>
+              </CardContent>
+              <CardMedia
+                component="img"
+                image={product.image}
+                alt={product.name}
+                sx={{
+                  maxHeight: 350,
+                }}
               />
-            </Box>
+            </Card>
           </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography>{product?.name}</Typography>
-              <Typography>${product?.price}</Typography>
-            </Box>
-            <Box className="purchase-form" sx={{ mt: 2 }}>
+          <Grid item xs={12} md={6}>
+            <Box className="form__container" sx={{ mx: 'auto', width: '90%' }}>
+              <Typography variant="h5">Add Product</Typography>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register('productName')} defaultValue="" />
-                <input {...register('productPrice')} defaultValue="" />
-                <input {...register('email')} defaultValue="" />
-                <input {...register('date')} type="date" />
-                <select {...register('color')}>
-                  <option value="Black">Black</option>
-                  <option value="Pink">Pink</option>
-                  <option value="Blue">Blue</option>
-                </select>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
+                {/* name of the user */}
+                <div className="input__box">
+                  <input value={user.name} readOnly />
+                </div>
+
+                {/* email of the user */}
+                <div className="input__box">
+                  <input value={user.email} readOnly />
+                </div>
+
+                <div className="input__box">
+                  <textarea
+                    placeholder="Your address"
+                    {...register('address', {
+                      required: 'this field is required',
+                      minLength: {
+                        value: 3,
+                        message: 'Please give more long address',
+                      },
+                    })}
+                  />
+                </div>
+
+                {errors.address && (
+                  <Alert severity="error" variant="outlined">
+                    {errors.address.message}
+                  </Alert>
+                )}
+
+                {/* rating of the food */}
+                <div className="input__box">
+                  <input
+                    placeholder="Your Phone"
+                    {...register('phone', {
+                      required: 'this field is required',
+                    })}
+                  />
+                </div>
+                {errors.phone && (
+                  <Alert severity="error" variant="outlined">
+                    {errors.phone.message}
+                  </Alert>
+                )}
+
+                <button
+                  type="submit"
+                  className="submit__btn"
+                  style={{
+                    display: 'block',
+                    cursor: 'pointer',
+                    padding: '10px 0',
+                    width: '50%',
+                    margin: '0 auto',
+                    backgroundColor: pink[600],
+                    color: 'white',
+                    borderRadius: 5,
+                    border: 0,
                   }}
                 >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-around',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Button
-                      variant="outlined"
-                      color="warning"
-                      sx={{ px: 2, py: 1 }}
-                    >
-                      <AiOutlineMinus size={30} />
-                    </Button>
-                    <Typography variant="h4" sx={{ p: 2 }}>
-                      1
-                    </Typography>
-                    <Button
-                      variant="outlined"
-                      color="success"
-                      sx={{ px: 2, py: 1 }}
-                    >
-                      <AiOutlinePlus size={30} />
-                    </Button>
-                  </Box>
-                  <Box>
-                    <Button variant="contained" className="Add-cart-btn">
-                      Add to Cart
-                    </Button>
-                  </Box>
-                </Box>
+                  Purchase
+                </button>
               </form>
             </Box>
           </Grid>
         </Grid>
       </Box>
-      <Box className="product-specification">
-        <Box>
-          <Typography>More Details</Typography>
-          <ul>
-            <li>
-              Top notes of tart Italian lemon, crisp green apple and clean
-            </li>
-            <li>
-              Cooling mint oil open the aroma with a burst of fresh exuberance,
-              energizing
-            </li>
-            <li>
-              Finally, base notes of Atlas cedar, fresh-cut Virginian cedar,
-              oakmoss
-            </li>
-            <li>
-              Brut has been the popular choice of men and sports stars in the UK
-              since 1964.
-            </li>
-            <li>
-              The sophisticated, spicy scent will make you feel confident with
-              its fresh and distinctive fragrance.
-            </li>
-          </ul>
-        </Box>
-        <Box>
-          <Typography>Key Specification</Typography>
-          <ul>
-            <li>Fully immerse yourself in the elegant and exotic Mancera</li>
-            <li>
-              Middle notes of heady Indonesian patchouli leaf, delicate violet
-              and rich Bulgarian
-            </li>
-            <li>
-              Dubai Amethyst by Bond No 9 is an amber floral fragrance for women
-              and men
-            </li>
-          </ul>
-        </Box>
+      <Box sx={{ ml: 5 }}>
+        <Typography variant="h4" sx={{ fontWeight: 600, mb: 3 }}>
+          More about the Product
+        </Typography>
+        <Typography variant="h5">{product.long_desc}</Typography>
       </Box>
     </Box>
   );
