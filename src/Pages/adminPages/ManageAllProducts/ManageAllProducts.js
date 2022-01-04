@@ -48,12 +48,6 @@ const ManageAllProducts = () => {
 
   const handleDeleteProduct = (id) => {
     dispatch(deleteProducts(id)).then(() => {
-      // delete the orders also
-      // axios
-      //   .delete(
-      //     `https://guarded-sierra-90712.herokuapp.com/orders/deleteall/${id}`
-      //   )
-      //   .then((response) => console.log(response.data));
       dispatch(removeFromProduct(id));
     });
   };

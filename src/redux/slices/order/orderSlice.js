@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // create the thunk
 export const fetchAllOrders = createAsyncThunk(
-  'products/fetchAllOrders',
+  'orders/fetchAllOrders',
   async () => {
     const response = await axios
       .get('http://localhost:5000/orders')
@@ -13,7 +13,7 @@ export const fetchAllOrders = createAsyncThunk(
 );
 
 export const createOrder = createAsyncThunk(
-  'products/createOrder',
+  'orders/createOrder',
   async (data) => {
     const response = await axios
       .post('http://localhost:5000/orders', data)
@@ -23,7 +23,7 @@ export const createOrder = createAsyncThunk(
 );
 
 export const updateOrderStatus = createAsyncThunk(
-  'products/updateOrderStatus',
+  'orders/updateOrderStatus',
   async (id) => {
     const response = await axios
       .put(`http://localhost:5000/orders/${id}`)
@@ -32,8 +32,18 @@ export const updateOrderStatus = createAsyncThunk(
   }
 );
 
+export const cancelOrder = createAsyncThunk(
+  'orders/cancelOrder',
+  async (id) => {
+    const response = axios
+      .delete(`http://localhost:5000/orders/${id}`)
+      .then((response) => response.data);
+    return response;
+  }
+);
+
 const orderSlice = createSlice({
-  name: 'products',
+  name: 'orders',
   initialState: {
     allOrders: [],
     singleProduct: {},
@@ -41,7 +51,7 @@ const orderSlice = createSlice({
   reducers: {
     removeFromOrder: (state, { payload }) => {
       state.allOrders = state.allOrders.filter(
-        (product) => product._id !== payload
+        (order) => order._id !== payload
       );
     },
     updateStatus: (state, { payload }) => {
@@ -63,6 +73,7 @@ const orderSlice = createSlice({
     builder.addCase(updateOrderStatus.fulfilled, (state, { payload }) => {
       state.singleProduct = payload;
     });
+    builder.addCase(cancelOrder.fulfilled, (state, { payload }) => {});
   },
 });
 
