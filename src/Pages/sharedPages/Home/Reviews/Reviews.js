@@ -2,23 +2,23 @@ import { Avatar, Grid, Paper, Rating, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import reviewImg from '../../../../assets/Images/BannerImg/review.jpg';
+import { fetchAllReviews } from '../../../../redux/slices/review/reviewSlice';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Reviews = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const [reviews, setReviews] = useState([]);
+  const reviews = useSelector((state) => state.reviews.reviews);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get('https://guarded-sierra-90712.herokuapp.com/reviews')
-      .then((response) => setReviews(response.data));
+    dispatch(fetchAllReviews());
   }, []);
 
   const handleStepChange = (step) => {

@@ -1,4 +1,11 @@
-import { Alert, Button, Grid, Snackbar, Typography } from '@mui/material';
+import {
+  Alert,
+  Button,
+  Container,
+  Grid,
+  Snackbar,
+  Typography,
+} from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,7 +66,7 @@ const MyOrders = () => {
   };
 
   return (
-    <Box sx={{ minHeight: 'calc(100vh - 220px)', mt: 3 }}>
+    <Container sx={{ minHeight: 'calc(100vh - 220px)', mt: 3 }}>
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
@@ -79,7 +86,7 @@ const MyOrders = () => {
           />
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 };
 
