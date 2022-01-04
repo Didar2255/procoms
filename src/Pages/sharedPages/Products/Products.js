@@ -1,5 +1,4 @@
-import { Grid, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Container, Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../../redux/slices/product/productSlice';
@@ -15,18 +14,18 @@ const Products = () => {
   }, []);
 
   return (
-    <Box sx={{ m: 3 }}>
+    <Container sx={{ my: 3 }}>
       <Typography variant="h5" sx={{ fontWeight: 600, mb: 3 }}>
         Top Rated Products
       </Typography>
       <Grid container sx={{ justifyContent: 'space-evenly' }}>
         {products.map((product) => (
-          <Grid item key={product._id}>
+          <Grid item xs={12} md={4} key={product._id} sx={{ mb: 3 }}>
             <Product product={product}></Product>
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 };
 

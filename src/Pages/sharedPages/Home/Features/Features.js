@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import camera from '../../../../assets/Images/Features/camara.png';
 import drone from '../../../../assets/Images/Features/drone.png';
 import laptop from '../../../../assets/Images/Features/laptop.png';
@@ -26,6 +27,8 @@ const Features = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ m: 3 }}>
       <Box sx={{ flexGrow: 1 }}>
@@ -51,7 +54,11 @@ const Features = () => {
                     {feature.discount}
                   </Typography>
                   <Typography variant="h6">{feature.name}</Typography>
-                  <Button variant="contained" sx={{ mt: 1 }}>
+                  <Button
+                    variant="contained"
+                    sx={{ mt: 1 }}
+                    onClick={() => navigate('/products')}
+                  >
                     Shop Now
                   </Button>
                 </Box>
