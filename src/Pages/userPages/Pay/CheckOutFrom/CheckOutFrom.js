@@ -1,102 +1,110 @@
-import React, { useEffect, useState } from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { CircularProgress, Container } from '@mui/material';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  createPaymentIntent,
+  setError,
+  setIsProcessing,
+  setSuccess,
+} from '../../../../redux/slices/payment/paymentSlice';
 
-const CheckOutFrom = ({ order }) => {
-    const stripe = useStripe()
-    const elements = useElements();
-    const user = useSelector(state => state.auth.user)
+const CheckOutFrom = ({ price }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
-    const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
-    const [processing, setProcessing] = useState(false)
-    const [clientSecret, setClientSecret] = useState('')
+  const clientSecret = useSelector((state) => state.payment.clientSecret);
+  const error = useSelector((state) => state.payment.error);
+  const success = useSelector((state) => state.payment.success);
+  const isProcessing = useSelector((state) => state.payment.isProcessing);
 
-    useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', {
-            price: order
-        })
-            .then(response => setClientSecret(response.data.clientSecret))
-    }, [])
+  useEffect(() => {
+    dispatch(createPaymentIntent(price));
+  }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        if (!stripe || !elements) {
-            return;
-        }
-        const card = elements.getElement(CardElement);
-        if (card == null) {
-            return;
-        }
-        setProcessing(true);
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card,
-        });
-
-        if (error) {
-            setError(error.message)
-            setSuccess('')
-        } else {
-            setError('')
-            console.log(paymentMethod);
-        }
-        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: user?.name,
-                        email: user?.email
-                    },
-                },
-            },
-        );
-        if (intentError) {
-            setError(intentError.message)
-            setSuccess('')
-        }
-        else {
-            setSuccess('Your payment processed successfully')
-            setError('')
-            setProcessing(false)
-        }
+    if (!stripe || !elements) {
+      return;
     }
-    return (
-        <Container className='my-5'>
-            <form onSubmit={handleSubmit}>
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
-                                },
-                            },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
-                {processing ? <CircularProgress></CircularProgress> : <button type="submit" disabled={!stripe || success} >
-                    Pay ${order}
-                </button>}
-            </form>
-            {
-                error && <p style={{ color: 'red' }}>{error}</p>
-            }
-            {
-                success && <p style={{ color: 'green' }}>{success}</p>
-            }
-        </Container>
-    );
+    const card = elements.getElement(CardElement);
+
+    if (card == null) {
+      return;
+    }
+
+    dispatch(setIsProcessing(true));
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card,
+    });
+
+    if (error) {
+      dispatch(setError(error.message));
+      dispatch(setSuccess(''));
+      dispatch(setIsProcessing(false));
+    } else {
+      dispatch(setError(''));
+      dispatch(setIsProcessing(false));
+    }
+
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.name,
+            email: user?.email,
+          },
+        },
+      });
+
+    if (intentError) {
+      dispatch(setError(intentError.message));
+      dispatch(setSuccess(''));
+    } else {
+      dispatch(setSuccess('Your payment processed successfully'));
+      dispatch(setError(''));
+    }
+  };
+
+  return (
+    <Container className="my-5">
+      <form onSubmit={handleSubmit}>
+        {clientSecret && (
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: '16px',
+                  color: '#424770',
+                  '::placeholder': {
+                    color: '#aab7c4',
+                  },
+                },
+                invalid: {
+                  color: '#9e2146',
+                },
+              },
+            }}
+          />
+        )}
+        {isProcessing ? (
+          <CircularProgress></CircularProgress>
+        ) : (
+          <button type="submit" disabled={!stripe || success}>
+            Pay ${price}
+          </button>
+        )}
+      </form>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
+    </Container>
+  );
 };
 
 export default CheckOutFrom;
