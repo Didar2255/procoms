@@ -57,7 +57,7 @@ const App = () => {
             path="admin"
             element={
               <AdminRoute>
-                <AdminDashboard />{' '}
+                <AdminDashboard />
               </AdminRoute>
             }
           >

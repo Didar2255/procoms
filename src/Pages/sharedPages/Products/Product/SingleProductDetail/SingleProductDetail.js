@@ -15,7 +15,7 @@ const SingleProductDetail = () => {
     axios
       .get(`http://localhost:5000/products/${id}`)
       .then((response) => setProduct(response.data));
-  }, []);
+  }, [id]);
 
   const onSubmit = (data) => {};
   return (
