@@ -46,21 +46,12 @@ const orderSlice = createSlice({
   name: 'orders',
   initialState: {
     allOrders: [],
-    singleProduct: {},
   },
   reducers: {
     removeFromOrder: (state, { payload }) => {
       state.allOrders = state.allOrders.filter(
         (order) => order._id !== payload
       );
-    },
-    updateStatus: (state, { payload }) => {
-      state.allOrders = state.allOrders.map((allOrder) => {
-        if (allOrder._id === payload) {
-          allOrder.status = 'shipped';
-        }
-        return allOrder;
-      });
     },
   },
   extraReducers: (builder) => {
@@ -77,6 +68,6 @@ const orderSlice = createSlice({
   },
 });
 
-export const { removeFromOrder, updateStatus } = orderSlice.actions;
+export const { removeFromOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;
