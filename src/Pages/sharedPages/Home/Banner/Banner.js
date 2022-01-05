@@ -17,20 +17,20 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const banners = [
   {
     subtitle: 'Best Seller',
-    title: 'Creative Laptop',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem itaque recusandae vel nulla, provident praesentium, vitae dolorum explicabo ipsam dolor, doloremque temporibus animi dolore sint hic rem. Aspernatur, quae!',
+    title: 'Creative Products',
+    desc: 'We sell various creative products made by our own research.',
     imgPath: bannerOne,
   },
   {
     subtitle: 'Best Seller',
-    title: 'Creative Laptop',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem itaque recusandae vel nulla, provident praesentium, vitae dolorum explicabo ipsam dolor, doloremque temporibus animi dolore sint hic rem. Aspernatur, quae!',
+    title: 'Best Products',
+    desc: 'Be with us to find your best choice. We will not disappoint you. ',
     imgPath: bannerTwo,
   },
   {
     subtitle: 'Best Seller',
-    title: 'Creative Laptop',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem itaque recusandae vel nulla, provident praesentium, vitae dolorum explicabo ipsam dolor, doloremque temporibus animi dolore sint hic rem. Aspernatur, quae!',
+    title: 'Home Delivery',
+    desc: 'If you want you can pay in our website. Otherwise you also have the home delivery option.   ',
     imgPath: bannerThre,
   },
 ];
@@ -71,7 +71,7 @@ const Banner = () => {
                   md={6}
                   sx={{ mt: { xs: 3, md: 0 }, pl: { xs: 1, md: 3 } }}
                 >
-                  <Typography variant="subtitle">{step.subtitle}</Typography>
+                  <Typography variant="h6" >{step.subtitle}</Typography>
                   <Typography variant="h3">{step.title}</Typography>
                   <Typography variant="body1" sx={{ mb: 3 }}>
                     {step.desc}
