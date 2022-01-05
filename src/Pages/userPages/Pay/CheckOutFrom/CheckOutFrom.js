@@ -1,7 +1,13 @@
 import { CircularProgress, Container } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchAllOrders,
+  removeAllOrderOfUser,
+  removeSpecificUserOrder,
+} from '../../../../redux/slices/order/orderSlice';
 import {
   createPaymentIntent,
   setError,
@@ -38,7 +44,7 @@ const CheckOutFrom = ({ price }) => {
 
     dispatch(setIsProcessing(true));
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
     });
@@ -69,11 +75,15 @@ const CheckOutFrom = ({ price }) => {
     } else {
       dispatch(setSuccess('Your payment processed successfully'));
       dispatch(setError(''));
+      dispatch(removeAllOrderOfUser(user.email)).then(() => {
+        removeSpecificUserOrder(user.email);
+        fetchAllOrders();
+      });
     }
   };
 
   return (
-    <Container className="my-5">
+    <Container sx={{ my: 5 }}>
       <form onSubmit={handleSubmit}>
         {clientSecret && (
           <CardElement
@@ -81,7 +91,7 @@ const CheckOutFrom = ({ price }) => {
               style: {
                 base: {
                   fontSize: '16px',
-                  color: '#424770',
+                  color: '#7c0fbf',
                   '::placeholder': {
                     color: '#aab7c4',
                   },
@@ -96,8 +106,22 @@ const CheckOutFrom = ({ price }) => {
         {isProcessing ? (
           <CircularProgress></CircularProgress>
         ) : (
-          <button type="submit" disabled={!stripe || success}>
-            Pay ${price}
+          <button
+            type="submit"
+            disabled={!stripe || success}
+            style={{
+              display: 'block',
+              cursor: 'pointer',
+              padding: '10px 0',
+              width: '50%',
+              margin: '10px auto',
+              backgroundColor: pink[600],
+              color: 'white',
+              borderRadius: 5,
+              border: 0,
+            }}
+          >
+            pay ${price}
           </button>
         )}
       </form>

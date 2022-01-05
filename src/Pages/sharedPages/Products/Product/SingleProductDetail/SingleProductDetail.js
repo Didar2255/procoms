@@ -19,11 +19,13 @@ const SingleProductDetail = () => {
   const product = useSelector((state) => state.products.singleProduct);
   const { user, admin } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -38,6 +40,7 @@ const SingleProductDetail = () => {
       email: user.email,
       order_time,
       product_id: id,
+      price: product.price,
       ...data,
     };
     if (admin) {
