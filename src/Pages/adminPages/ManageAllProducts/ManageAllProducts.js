@@ -17,6 +17,7 @@ import {
   fetchProducts,
   removeFromProduct,
 } from '../../../redux/slices/product/productSlice';
+import Chart from '../../userPages/UserDashboard/Chart/Chart';
 import ProductTableRow from './ProductTableRow/ProductTableRow';
 
 const ManageAllProducts = () => {
@@ -54,6 +55,10 @@ const ManageAllProducts = () => {
 
   return (
     <Box sx={{ mt: 3, minHeight: 'calc(100vh - 220px)' }}>
+      <Typography variant='h5' sx={{ textAlign: 'center', fontWeight: 600 }}>
+        Product Chart
+      </Typography>
+      <Chart></Chart>
       <TableContainer component={Paper} sx={{ px: { xs: 2, md: 15 } }}>
         <Table
           sx={{

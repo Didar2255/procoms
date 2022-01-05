@@ -8,19 +8,18 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleProduct } from '../../../../redux/slices/product/productSlice';
 import CancelOrderModal from './CancelOrderModal/CancelOrderModal';
 
 const MyOrderCard = ({ myOrder, handleCancelOrder }) => {
-  const product = useSelector((state) => state.products.singleProduct);
-
-  const dispatch = useDispatch();
-
+  const [product, setProduct] = useState({});
+  console.log(product)
   useEffect(() => {
-    dispatch(fetchSingleProduct(myOrder.product_id));
+    axios
+      .get(`https://evening-plains-37953.herokuapp.com/products/${myOrder.product_id}`)
+      .then((response) => setProduct(response.data))
   }, [myOrder.product_id]);
 
   const cancelOrderButton = (

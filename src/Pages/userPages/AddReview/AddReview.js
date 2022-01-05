@@ -70,8 +70,8 @@ const AddReview = () => {
                   message: 'at least write something about our service',
                 },
                 maxLength: {
-                  value: 30,
-                  message: 'Please share your thoughts within 30 words',
+                  value: 50,
+                  message: 'Please share your thoughts within 50 words',
                 },
               })}
             />
@@ -122,7 +122,7 @@ const AddReview = () => {
               border: 0,
             }}
           >
-            Add Product
+            Add Review
           </button>
         </form>
       </Box>
