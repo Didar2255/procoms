@@ -5,7 +5,7 @@ export const createPaymentIntent = createAsyncThunk(
   'payment/createPaymentIntent',
   async (price) => {
     const response = await axios
-      .post('http://localhost:5000/create-payment-intent', { price })
+      .post('https://evening-plains-37953.herokuapp.com/create-payment-intent', { price })
       .then((response) => response.data.clientSecret);
     return response;
   }

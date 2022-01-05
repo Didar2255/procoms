@@ -16,7 +16,7 @@ export const createOrder = createAsyncThunk(
   'orders/createOrder',
   async (data) => {
     const response = await axios
-      .post('http://localhost:5000/orders', data)
+      .post('https://evening-plains-37953.herokuapp.com/orders', data)
       .then((response) => response.data);
     return response;
   }
@@ -46,7 +46,7 @@ export const removeAllOrderOfUser = createAsyncThunk(
   'orders/removeAllOrderOfUser',
   async (email) => {
     const response = axios
-      .delete(`http://localhost:5000/orders?email=${email}`)
+      .delete(`https://evening-plains-37953.herokuapp.com/orders?email=${email}`)
       .then((response) => response.data);
     return response;
   }
