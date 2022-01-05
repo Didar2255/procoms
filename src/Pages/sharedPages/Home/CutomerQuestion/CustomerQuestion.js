@@ -95,8 +95,8 @@ const CustomerQuestion = () => {
                         </Accordion>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                        <Box>
-                            <img src={pic1} alt="" style={{ width: "500px", borderRadius: '5px' }} />
+                        <Box >
+                            <img src={pic1} alt="" style={{ width: "100%", borderRadius: '5px' }} />
                         </Box>
                     </Grid>
                 </Grid>
