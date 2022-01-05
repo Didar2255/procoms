@@ -58,7 +58,7 @@ const MyOrderCard = ({ myOrder, handleCancelOrder }) => {
           }}
         >
           <Typography variant="h6" color="primary">
-            ${product.price}
+            ${myOrder.price}
           </Typography>
 
           <Typography variant="subtitle2">{product.name}</Typography>

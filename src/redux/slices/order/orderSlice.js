@@ -42,6 +42,16 @@ export const cancelOrder = createAsyncThunk(
   }
 );
 
+export const removeAllOrderOfUser = createAsyncThunk(
+  'orders/removeAllOrderOfUser',
+  async (email) => {
+    const response = axios
+      .delete(`http://localhost:5000/orders?email=${email}`)
+      .then((response) => response.data);
+    return response;
+  }
+);
+
 const orderSlice = createSlice({
   name: 'orders',
   initialState: {
@@ -51,6 +61,11 @@ const orderSlice = createSlice({
     removeFromOrder: (state, { payload }) => {
       state.allOrders = state.allOrders.filter(
         (order) => order._id !== payload
+      );
+    },
+    removeSpecificUserOrder: (state, { payload }) => {
+      state.allOrders = state.allOrders.filter(
+        (order) => order.email !== payload
       );
     },
   },
@@ -65,9 +80,10 @@ const orderSlice = createSlice({
       state.singleProduct = payload;
     });
     builder.addCase(cancelOrder.fulfilled, (state, { payload }) => { });
+    builder.addCase(removeAllOrderOfUser.fulfilled, (state, { payload }) => { });
   },
 });
 
-export const { removeFromOrder } = orderSlice.actions;
+export const { removeFromOrder, removeSpecificUserOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;

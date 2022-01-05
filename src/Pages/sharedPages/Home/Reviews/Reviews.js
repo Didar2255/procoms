@@ -1,4 +1,11 @@
-import { Avatar, Grid, Paper, Rating, Stack } from '@mui/material';
+import {
+  Avatar,
+  CircularProgress,
+  Grid,
+  Paper,
+  Rating,
+  Stack,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -24,6 +31,15 @@ const Reviews = () => {
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+
+  if (reviews.length === 0) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography sx={{ display: 'none' }}>loading</Typography>
+        <CircularProgress color="secondary" />
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ m: 3 }}>
