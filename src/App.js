@@ -15,6 +15,7 @@ import Header from './Pages/sharedPages/Home/Header/Header';
 import Home from './Pages/sharedPages/Home/Home';
 import Login from './Pages/sharedPages/Login/Login';
 import NotFound from './Pages/sharedPages/NotFound/NotFound';
+import PrivateRoute from './Pages/sharedPages/PrivateRoute/PrivateRoute';
 import SingleProductDetail from './Pages/sharedPages/Products/Product/SingleProductDetail/SingleProductDetail';
 import Products from './Pages/sharedPages/Products/Products';
 import Register from './Pages/sharedPages/Register/Register';
@@ -34,7 +35,7 @@ const App = () => {
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<SingleProductDetail />} />
+          <Route path="products/:id" element={<PrivateRoute><SingleProductDetail /></PrivateRoute>} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
