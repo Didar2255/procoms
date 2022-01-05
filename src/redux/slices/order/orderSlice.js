@@ -6,7 +6,7 @@ export const fetchAllOrders = createAsyncThunk(
   'orders/fetchAllOrders',
   async () => {
     const response = await axios
-      .get('http://localhost:5000/orders')
+      .get('https://evening-plains-37953.herokuapp.com/orders')
       .then((response) => response.data);
     return response;
   }
@@ -26,7 +26,7 @@ export const updateOrderStatus = createAsyncThunk(
   'orders/updateOrderStatus',
   async (id) => {
     const response = await axios
-      .put(`http://localhost:5000/orders/${id}`)
+      .put(`https://evening-plains-37953.herokuapp.com/orders/${id}`)
       .then((response) => response.data);
     return response;
   }
@@ -36,7 +36,7 @@ export const cancelOrder = createAsyncThunk(
   'orders/cancelOrder',
   async (id) => {
     const response = axios
-      .delete(`http://localhost:5000/orders/${id}`)
+      .delete(`https://evening-plains-37953.herokuapp.com/orders/${id}`)
       .then((response) => response.data);
     return response;
   }
@@ -64,7 +64,7 @@ const orderSlice = createSlice({
     builder.addCase(updateOrderStatus.fulfilled, (state, { payload }) => {
       state.singleProduct = payload;
     });
-    builder.addCase(cancelOrder.fulfilled, (state, { payload }) => {});
+    builder.addCase(cancelOrder.fulfilled, (state, { payload }) => { });
   },
 });
 

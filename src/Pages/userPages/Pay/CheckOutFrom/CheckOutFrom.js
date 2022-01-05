@@ -15,7 +15,7 @@ const CheckOutFrom = ({ order }) => {
     const [clientSecret, setClientSecret] = useState('')
 
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', {
+        axios.post('https://evening-plains-37953.herokuapp.com/create-payment-intent', {
             price: order
         })
             .then(response => setClientSecret(response.data.clientSecret))

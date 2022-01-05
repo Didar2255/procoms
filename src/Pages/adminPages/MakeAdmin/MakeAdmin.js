@@ -28,7 +28,7 @@ const MakeAdmin = () => {
       ...data,
     };
     axios
-      .put('http://localhost:5000/user/admin', makeAdminData)
+      .put('https://evening-plains-37953.herokuapp.com/user/admin', makeAdminData)
       .then((response) => {
         if (response.data.modifiedCount === 0) {
           alert(

@@ -6,7 +6,7 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
     const response = await axios
-      .get('http://localhost:5000/products')
+      .get('https://evening-plains-37953.herokuapp.com/products')
       .then((response) => response.data);
     return response;
   }
@@ -16,7 +16,7 @@ export const addProducts = createAsyncThunk(
   'products/addProducts',
   async (data) => {
     const response = await axios
-      .post('http://localhost:5000/products', data)
+      .post('https://evening-plains-37953.herokuapp.com/products', data)
       .then((response) => response.data);
     return response;
   }
@@ -26,7 +26,7 @@ export const deleteProducts = createAsyncThunk(
   'products/deleteProducts',
   async (id) => {
     const response = await axios
-      .delete(`http://localhost:5000/products/${id}`)
+      .delete(`https://evening-plains-37953.herokuapp.com/products/${id}`)
       .then((response) => response.data);
     return response;
   }
@@ -36,7 +36,7 @@ export const fetchSingleProduct = createAsyncThunk(
   'products/fetchSingleProduct',
   async (id) => {
     const response = await axios
-      .get(`http://localhost:5000/products/${id}`)
+      .get(`https://evening-plains-37953.herokuapp.com/products/${id}`)
       .then((response) => response.data);
     return response;
   }
@@ -64,7 +64,7 @@ const productSlice = createSlice({
     builder.addCase(addProducts.fulfilled, (state, { payload }) => {
       state.products.push(payload);
     });
-    builder.addCase(deleteProducts.fulfilled, (state, { payload }) => {});
+    builder.addCase(deleteProducts.fulfilled, (state, { payload }) => { });
     builder.addCase(fetchSingleProduct.fulfilled, (state, { payload }) => {
       // Add cards to the state array
       state.singleProduct = payload;

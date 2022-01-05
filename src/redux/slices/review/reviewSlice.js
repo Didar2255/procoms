@@ -6,7 +6,7 @@ export const fetchAllReviews = createAsyncThunk(
   'orders/fetchAllReviews',
   async () => {
     const response = await axios
-      .get('http://localhost:5000/reviews')
+      .get('https://evening-plains-37953.herokuapp.com/reviews')
       .then((response) => response.data);
     return response;
   }
@@ -14,7 +14,7 @@ export const fetchAllReviews = createAsyncThunk(
 
 export const addReview = createAsyncThunk('orders/addReview', async (data) => {
   const response = await axios
-    .post('http://localhost:5000/reviews', data)
+    .post('https://evening-plains-37953.herokuapp.com/reviews', data)
     .then((response) => response.data);
   return response;
 });

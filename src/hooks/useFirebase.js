@@ -40,15 +40,15 @@ const useFirebase = () => {
 
         // save the user to database
         axios
-          .put('http://localhost:5000/user', { email })
-          .then(() => {})
+          .put('https://evening-plains-37953.herokuapp.com/user', { email })
+          .then(() => { })
           .catch((error) => console.log(error.message));
 
         // send name to firebase after creation
         updateProfile(auth.currentUser, {
           displayName: name,
         })
-          .then(() => {})
+          .then(() => { })
           .catch((error) => dispatch(setAuthError(error.message)));
         navigate('/');
       })
@@ -90,7 +90,7 @@ const useFirebase = () => {
   // set the admin
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user?email=${email}`)
+      .get(`https://evening-plains-37953.herokuapp.com/user?email=${email}`)
       .then((response) => dispatch(setAdmin(response.data.admin)));
   }, [email, dispatch]);
 
@@ -98,7 +98,7 @@ const useFirebase = () => {
   const logout = () => {
     dispatch(setIsLoading(true));
     signOut(auth)
-      .then(() => {})
+      .then(() => { })
       .catch((error) => {
         dispatch(setAuthError(error.message));
       })

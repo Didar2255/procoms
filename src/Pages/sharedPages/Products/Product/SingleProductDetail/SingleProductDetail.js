@@ -155,11 +155,11 @@ const SingleProductDetail = () => {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{ ml: 5 }}>
+      <Box sx={{ ml: 5, width: { xs: '100%', md: '70%' }, textAlign: 'center', mx: 'auto' }}>
         <Typography variant="h4" sx={{ fontWeight: 600, mb: 3 }}>
           More about the Product
         </Typography>
-        <Typography variant="h5">{product.long_desc}</Typography>
+        <Typography variant="body1" >{product.long_desc}</Typography>
       </Box>
     </Box>
   );
